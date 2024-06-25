@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume Scan Results</title>
+  </head>
+  <body>
+    <h1>Resume Scan Results</h1>
+
+    <h2>Extracted Skills</h2>
+    <ul>
+      <% for (const skill of matchingSkills) { %>
+      <li><%= skill %></li>
+      <% } %>
+    </ul>
+
+    <h2>Comparison with Reference Skills</h2>
+    <p>
+      Matched Skills: <%= matchingSkills.length %> out of <%=
+      referenceSkills.length %>
+    </p>
+    <p>Match Percentage: <%= Math.round(matchPercentage) %>%</p>
+  </body>
+</html>
