@@ -1,38 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Resume Scan Results</title>
-  <link rel="stylesheet" href="result.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playwrite+MX:wght@100..400&display=swap"
-    rel="stylesheet"
-  />
-</head>
-<body>
-  <header class="header">
-    <h1 class="fading-text">Resume Scanner</h1>
-    <p>Your Skills Analysis</p>
-  </header>
-  <main class="content">
-    <h1>Resume Scan Results</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume Scan Results</title>
+    <link rel="stylesheet" href="result.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+MX:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="fading-text">Resume Scanner</h1>
+      <p>Your Skills Analysis</p>
+    </header>
+    <main
+      class="content"
+      data-matching-skills-length="<%= matchingSkills.length %>"
+      data-reference-skills-length="<%= referenceSkills.length %>"
+    >
+      <h1>Resume Scan Results</h1>
 
-    <h2>Extracted Skills</h2>
-    <div class="skills-container">
-      <% for (const skill of matchingSkills) { %>
-      <button class="skill-chip" type="button">
-        <%= skill %>
-      </button>
-      <% } %>
-    </div>
+      <h2>Extracted Skills</h2>
+      <div class="skills-container">
+        <% for (const skill of matchingSkills) { %>
+        <button class="skill-chip" type="button"><%= skill %></button>
+        <% } %>
+      </div>
 
-    <h2>Comparison with Reference Skills</h2>
-    <p>
-      Matched Skills: <%= matchingSkills.length %> out of <%= referenceSkills.length %>
-    </p>
-    <p>Match Percentage: <%= Math.round(matchPercentage) %>%</p>
-  </main>
-</body>
+      <h2>Comparison with Reference Skills</h2>
+      <p>
+        Matched Skills: <%= matchingSkills.length %> out of <%=
+        referenceSkills.length %>
+      </p>
+      <p>Match Percentage: <%= Math.round(matchPercentage) %>%</p>
+
+      <h2>Skill Match Pie Chart</h2>
+      <canvas id="skillMatchChart" width="300" height="300"></canvas>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const contentElement = document.querySelector(".content");
+        const matchingSkillsLength = parseInt(
+          contentElement.getAttribute("data-matching-skills-length")
+        );
+        const referenceSkillsLength = parseInt(
+          contentElement.getAttribute("data-reference-skills-length")
+        );
+
+        const ctx = document.getElementById("skillMatchChart").getContext("2d");
+        const skillMatchChart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["Matched Skills", "Unmatched Skills"],
+            datasets: [
+              {
+                data: [
+                  matchingSkillsLength,
+                  referenceSkillsLength - matchingSkillsLength,
+                ],
+                backgroundColor: ["#90EE90", "#D2122E"],
+                borderColor: ["#2980b9", "#95a5a6"],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
 </html>

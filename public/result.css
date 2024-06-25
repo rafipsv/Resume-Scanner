@@ -72,3 +72,10 @@ ul {
 li {
   margin-bottom: 5px;
 }
+
+/* Additional styles for smaller pie chart */
+canvas#skillMatchChart {
+  max-width: 300px; /* Set a maximum width for the chart */
+  max-height: 300px; /* Set a maximum height for the chart */
+  margin: auto; /* Center the chart horizontally */
+}
