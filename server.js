@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const multer = require("multer");
 const fs = require("fs"); // For file operations
+const pdfParse = require("pdf-parse");
 const referenceSkills = require("./referenceSkills");
 
 // Set view engine to EJS
@@ -21,18 +22,25 @@ app
     res.render("index"); // Render the upload form
   })
   .post(upload.single("resume"), async (req, res) => {
+    console.log("Uploaded file path:", req.file.path);
+    console.log("Uploaded file MIME type:", req.file.mimetype);
     const filePath = req.file.path; // Path to uploaded resume file
-
     try {
-      // Read file content (replace with PDF parsing library if needed)
-      const text = await fs.promises.readFile(filePath, "utf8");
+      const mimeType = req.file.mimetype;
+      let extractedSkills = [];
+      if (mimeType === "application/pdf") {
+        const file = await fs.promises.readFile(filePath);
+        extractedSkills = await extractSkillsFromPDF(file);
+      } else if (mimeType === "text/plain") {
+        const fileData = fs.readFileSync(filePath, "utf-8");
+        extractedSkills = extractSkills(fileData);
+      } else {
+        res
+          .status(400)
+          .send("Invalid file format. Please upload a PDF or text file.");
+        return;
+      }
 
-      // **Placeholder: Implement your skill extraction logic here**
-      const extractedSkills = extractSkills(text); // Replace with actual skill extraction
-
-      // Define your reference skills for comparison (replace with your data)
-
-      // **Placeholder: Implement your skill comparison logic here**
       const comparisonResults = compareSkills(extractedSkills, referenceSkills);
       // Render result template with extracted skills and comparison results
       res.render("result", { ...comparisonResults, referenceSkills }); // Spread operator for results
@@ -56,6 +64,17 @@ function extractSkills(text) {
   });
 
   return skills; // Remove empty strings
+}
+
+async function extractSkillsFromPDF(pdfBuffer) {
+  try {
+    const parsedText = await pdfParse(pdfBuffer); // Parse PDF text
+    const text = parsedText.text; // Get extracted text
+    return extractSkills(text); // Call skill extraction function
+  } catch (error) {
+    console.error("Error parsing PDF:", error);
+    return []; // Return empty array on error
+  }
 }
 function compareSkills(extractedSkills, referenceSkills) {
   const matchingSkills = [];
