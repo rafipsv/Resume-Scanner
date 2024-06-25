@@ -3,13 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <title>Resume Scanner</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+MX:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Resume Scanner</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-      <label for="resume">Upload Resume:</label>
-      <input type="file" id="resume" name="resume" accept=".txt,.docx,.pdf" />
-      <button type="submit">Upload</button>
-    </form>
+    <header class="header">
+      <h1 class="fading-text">Resume Scanner</h1>
+      <p>Upload your resume and we'll help you find the perfect skills!</p>
+    </header>
+    <main class="content">
+      <form action="/" method="POST" enctype="multipart/form-data">
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" name="resume" accept=".txt,.docx,.pdf" />
+        <button type="submit" class="upload-button">Upload</button>
+      </form>
+    </main>
   </body>
 </html>

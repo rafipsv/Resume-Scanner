@@ -3,8 +3,6 @@ const referenceSkills = require("../referenceSkills");
 const textConverter = require("../Utils/textConverter");
 const skils = require("../Utils/extractSkils");
 exports.ResumeController = async (req, res, next) => {
-  console.log("Uploaded file path:", req.file.path);
-  console.log("Uploaded file MIME type:", req.file.mimetype);
   const filePath = req.file.path; // Path to uploaded resume file
   try {
     const mimeType = req.file.mimetype;

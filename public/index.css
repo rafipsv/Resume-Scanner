@@ -1,0 +1,73 @@
+/* Body styles for black background and white text */
+body {
+  margin: 0;
+  font-family: "Playwrite MX", sans-serif; /* Include a fallback font */
+  background-color: black; /* Set background color to black */
+  color: white; /* Set text color to white */
+}
+
+/* Header styles (adjust color if needed) */
+.header {
+  background-color: #002244; /* Maintain black background for header */
+  color: #fff; /* Keep text color white (already white in body) */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  position: relative; /* Establish reference point for animations */
+}
+
+.header h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+/* Content container styles */
+.content {
+  display: flex; /* Allow horizontal layout for label and button */
+  flex-direction: column; /* Arrange form elements vertically */
+  gap: 10px; /* Add spacing between elements */
+  margin: auto; /* Center content horizontally within viewport */
+  padding: 200px; /* Add some padding for visual separation */
+}
+
+form {
+  display: flex; /* Allow horizontal layout for label and button */
+  flex-direction: column; /* Arrange form elements vertically */
+  gap: 10px; /* Add spacing between elements */
+}
+
+form label {
+  display: inline-block; /* Allow label to be on the same line as input */
+  margin-bottom: 5px;
+}
+
+/* Upload button styles (adjust color if needed) */
+.upload-button {
+  background-color: #2980b9; /* Adjust background color if desired */
+  color: #fff; /* Keep text color white (already white in body) */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.upload-button:hover {
+  background-color: #3498db; /* Adjust hover color if desired */
+}
+
+/* Fading text animation styles */
+.fading-text {
+  animation: fade-in 3s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

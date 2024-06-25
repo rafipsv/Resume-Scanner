@@ -11,6 +11,7 @@ exports.extractSkillsFromPDF = async function extractSkillsFromPDF(pdfBuffer) {
     return []; // Return empty array on error
   }
 };
+
 exports.compareSkills = function compareSkills(
   extractedSkills,
   referenceSkills

@@ -1,0 +1,74 @@
+/* Body styles */
+body {
+  margin: 0;
+  font-family: "Playwrite MX", sans-serif;
+  background-color: black; /* Set background color to black */
+  color: white; /* Set text color to white */
+}
+
+/* Header styles */
+.header {
+  background-color: #002244; /* Maintain desired header background color */
+  color: #fff; /* Keep text color white (already white in body) */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  position: relative; /* Establish reference point for animations */
+}
+
+.header h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+/* Content container styles */
+.content {
+  display: flex; /* Allow horizontal layout if needed for future sections */
+  flex-direction: column; /* Arrange content vertically */
+  gap: 20px; /* Add spacing between sections */
+  margin: auto; /* Center content horizontally within viewport */
+  padding: 20px; /* Add some padding for visual separation */
+}
+
+/* Styles for skill chips container */
+.skills-container {
+  display: flex; /* Allow horizontal layout for chip buttons */
+  flex-wrap: wrap; /* Allow chips to wrap to multiple lines if needed */
+  gap: 5px; /* Add spacing between chips */
+}
+
+/* Styles for individual skill chips */
+.skill-chip {
+  background-color: #2980b9; /* Adjust chip background color if desired */
+  color: white; /* Keep chip text white (already white in body) */
+  padding: 5px 10px; /* Add padding for chip content */
+  border: none;
+  border-radius: 5px; /* Rounded corners for chip buttons */
+  cursor: default; /* Remove default pointer cursor */
+  font-size: 0.8rem; /* Adjust chip text size if desired */
+  display: inline-flex; /* Allow for text wrapping within chip */
+  align-items: center; /* Vertically align chip content */
+  transform: translateZ(0); /* Initial position on Z-axis */
+  transition: transform 0.2s ease-in-out; /* Animation for hover effect */
+}
+
+.skill-chip:hover {
+  transform: translateY(-3px); /* Move chip slightly up on hover */
+}
+
+h1,
+h2 {
+  margin: 0; /* Remove default margin for better spacing */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  color: white; /* Ensure list text is white */
+}
+
+li {
+  margin-bottom: 5px;
+}
